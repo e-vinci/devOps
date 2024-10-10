@@ -30,7 +30,7 @@ router.get('/', function (req, res, next) {
 
 /* POST add exoplanet. */
 router.post('/add', upload.single('imageExoplanet'), function (req, res, next) {
-    console.log("POST ADD EXOPLAET");
+    console.log("POST ADD EXOPLAETs");
     // validate name of explanet -> betweeen 3 and 100 character
     if (validator.isLength(req.body.uniqueNameExoplanet, { min: 3, max: 100 })) {
         console.log("req.file : " + JSON.stringify(req.file));
