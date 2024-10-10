@@ -20,6 +20,10 @@ const validator = require('validator');
 
 const Exoplanet = require("../models/Exoplanet.js");
 
+function isValidExoplanetName(name) {
+    return validator.isLength(name, { min: 3, max: 100 });
+}
+
 /* GET exoplanets index. */
 router.get('/', function (req, res, next) {
     const exoplanetsTable = Exoplanet.list();
@@ -31,7 +35,7 @@ router.get('/', function (req, res, next) {
 router.post('/add', upload.single('imageExoplanet'), function (req, res, next) {
     console.log("POST ADD EXOPLANET");
     // validate name of explanet -> betweeen 3 and 100 character
-    if (validator.isLength(req.body.uniqueNameExoplanet, { min: 3, max: 100 })) {
+    if (isValidExoplanetName(req.body.uniqueNameExoplanet, { min: 3, max: 100 })) {
         console.log("req.file : " + JSON.stringify(req.file));
         let filename = null;
         // req.file must be undefined if no file given
